@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"deploy": "ghpages -d dist"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -17,6 +18,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"agnostic-svelte": "^1.1.27"
+		"agnostic-svelte": "^1.1.27",
+		"gh-pages": "^6.1.1"
 	}
 }
