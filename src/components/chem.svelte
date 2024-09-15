@@ -1,4 +1,6 @@
 <script>
+    export const prerender = true;
+
     export let title;
     export let reactants;
     export let products;

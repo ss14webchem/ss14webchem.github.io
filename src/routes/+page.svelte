@@ -1,5 +1,8 @@
 
 <script>
+    export const prerender = true;
+
+
     import { get } from 'svelte/store';
 
     import 'agnostic-svelte/css/common.min.css';
