@@ -19,7 +19,15 @@
         <b>
             <div class="p16 title">{ title }</div>
         </b>
-
+        <div class="mix">
+            {#if !minTemp} 
+            <p class="mixtext">Mix</p>        
+            {/if}
+            {#if minTemp} 
+            <p>Mix at {minTemp}K</p>        
+            {/if}
+        </div>
+  
         <div class="split">
             <div class="p16 list">
                 <b>
@@ -30,7 +38,7 @@
                         {reactant[0]} [{reactant[1].amount}]
                     </div>
                 {/each}
-            </div> 
+            </div>
             {#if products}
                 <div class="p16 list">
                     <b>
@@ -59,6 +67,16 @@
         display: flex;
         flex-direction: column;
     }
+
+    .mixtext{
+        margin: auto;
+    }
+
+    .mix {
+        display: inline-block;
+        justify-content: center;
+
+    }
         
     .split {
         display: inline-flex;
@@ -74,6 +92,6 @@
     }
 
    .hidden {
-    visibility: hidden;
+        visibility: hidden;
    }
 </style>
