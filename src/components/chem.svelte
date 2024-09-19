@@ -16,7 +16,7 @@
 </script>
 
 <div>
-    <Card isBorder="{true}" isStacked="{true}">
+    <Card isAnimated="{true}" isShadow="{true}" isBorder="{true}" isStacked="{true}">
         
         <b>
             <div class="p16 title">{ title }</div>
@@ -92,6 +92,7 @@
     .tag {
         font-size: 18px;
     }
+
 
    .hidden {
         visibility: hidden;

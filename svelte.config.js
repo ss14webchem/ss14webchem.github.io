@@ -16,6 +16,7 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
+		outDir: './dist',
 		paths: {
             base: '/ss14webchem.github.io' ,
         }

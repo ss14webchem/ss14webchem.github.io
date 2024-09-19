@@ -6,11 +6,11 @@ function __memo(fn) {
 
 return {
 	appDir: "_app",
-	appPath: "_app",
+	appPath: "ss14webchem.github.io/_app",
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.D5hFF4An.js","app":"_app/immutable/entry/app.CxijbKw-.js","imports":["_app/immutable/entry/start.D5hFF4An.js","_app/immutable/chunks/entry.BOzK70AG.js","_app/immutable/chunks/scheduler.OzGIaFTW.js","_app/immutable/entry/app.CxijbKw-.js","_app/immutable/chunks/scheduler.OzGIaFTW.js","_app/immutable/chunks/index.YF_IkidX.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.B3OHP1xm.js","app":"_app/immutable/entry/app.BMYFkY4G.js","imports":["_app/immutable/entry/start.B3OHP1xm.js","_app/immutable/chunks/entry.CSzB1aAY.js","_app/immutable/chunks/scheduler.ClYQhJMz.js","_app/immutable/entry/app.BMYFkY4G.js","_app/immutable/chunks/scheduler.ClYQhJMz.js","_app/immutable/chunks/index.Wh2IFfSo.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js'))

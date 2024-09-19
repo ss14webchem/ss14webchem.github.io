@@ -43,7 +43,7 @@ declare module '$env/static/private' {
 	export const DEVECOSTUDIO_VM_OPTIONS: string;
 	export const DriverData: string;
 	export const DXSDK_DIR: string;
-	export const EFC_42256: string;
+	export const EFC_16132: string;
 	export const GATEWAY_VM_OPTIONS: string;
 	export const GIT_ASKPASS: string;
 	export const GOLAND_VM_OPTIONS: string;
@@ -158,7 +158,7 @@ declare module '$env/dynamic/private' {
 		DEVECOSTUDIO_VM_OPTIONS: string;
 		DriverData: string;
 		DXSDK_DIR: string;
-		EFC_42256: string;
+		EFC_16132: string;
 		GATEWAY_VM_OPTIONS: string;
 		GIT_ASKPASS: string;
 		GOLAND_VM_OPTIONS: string;

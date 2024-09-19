@@ -6,9 +6,10 @@
     import { get } from 'svelte/store';
 
     import 'agnostic-svelte/css/common.min.css';
-    import { Header, Input,HeaderNav,HeaderNavItem} from 'agnostic-svelte';
+    import { Header, Input,HeaderNav,HeaderNavItem, Button, ButtonGroup} from 'agnostic-svelte';
     import Chem from '../components/chem.svelte';
     let filterPromise;
+
 
     let searchTerm = ''
     $: {
@@ -26,14 +27,57 @@
     import gas from '../reactions/gas.json'
     import food from '../reactions/food.json'
     
-    let chemicals = chemicalsf.concat(fun).concat(medicine).concat(pyrotechnic).concat(gas).concat(biological).concat(cleaning).concat(botany)
+    let ogChemicals = chemicalsf.concat(fun).concat(medicine).concat(pyrotechnic).concat(gas).concat(biological).concat(cleaning).concat(botany)
+
+    let chemicals = ogChemicals
+
+
+
+
+    function getProductless() {
+        let filter = chemicals.filter(data => {
+                if(!data.products) {
+                    return data
+                }
+            });
+        return filter
+    }
+
+    function getProducts() {
+        let filter = chemicals.filter(data => {
+            if(data.products) {
+                let obj = data.products
+                let keys = Object.keys(obj)
+                return keys.length > 0 
+            }
+        });
+
+        let filter2 = filter.filter(data => {
+            let id = data.id.toLowerCase();
+            return !id.includes('breakdown');
+        });
+
+        return filter2
+    }
+
+
+
 
     async function getFiltered() {
         if(searchTerm.length > 0) {
+            let filter2 = await chemicals.filter(data => {
+                let keys = Object.keys(data.reactants)
+                let words = keys.map(function(v) {
+                    return v.toLowerCase();
+                });
+                return words.includes(searchTerm.toLowerCase());
+            });
+            console.log(filter2)
             let filter = await chemicals.filter(data => {
                 return data.id.toLowerCase().includes(searchTerm.toLowerCase());
             });
-            return filter
+
+            return filter.concat(filter2)
         } else {
             return chemicals
         }
@@ -42,12 +86,31 @@
     filterPromise = getFiltered();
 
 
+    const onUseful = (e) => {
+        chemicals = ogChemicals
+        chemicals = getProducts()
+        let storedTerm = searchTerm
+        searchTerm = 'random'
+        searchTerm = storedTerm
+        console.log(chemicals)
+    };
 
+    const onAll = (e) => {
+        chemicals = ogChemicals
+        let storedTerm = searchTerm
+        searchTerm = 'random'
+        searchTerm = storedTerm
+        console.log(chemicals)
+    };
 
-    //console.log(chemicals)
-
-
-
+    const onLess = (e) => {
+        chemicals = ogChemicals
+        chemicals = getProductless();
+        let storedTerm = searchTerm
+        searchTerm = 'random'
+        searchTerm = storedTerm
+        console.log(chemicals)
+    };
 
 	
 </script>
@@ -63,6 +126,15 @@
                 </HeaderNavItem>
             </HeaderNav>
         </Header>
+
+        <div class="container buttons">
+            <ButtonGroup ariaLabel="Appropriate label for your button group">
+                <Button isGrouped isBordered mode="primary" on:click={onAll}>All</Button>
+                <Button isGrouped isBordered mode="primary" on:click={onUseful}>Useful</Button>
+                <Button isGrouped isBordered mode="primary" on:click={onLess}>Productless</Button>
+            </ButtonGroup>
+        </div>
+          
         <div class="container card-grid">
 
                 {#await filterPromise}
@@ -80,10 +152,12 @@
 </div>
 
 <style>
-    .root {
+
+    :root {
         font-family: var(--agnostic-font-family-body);
         font-size: var(--agnostic-body);
         color: var(--agnostic-font-color);
+        --agnostic-primary-modelight: #053337;
         -webkit-font-smoothing: antialiased;
         line-height: 1.5;
     }
@@ -92,6 +166,11 @@
     .container {
         margin: 0 auto;
     }   
+
+    .buttons {
+        padding-top: 2rem;
+        padding-left: 5%;
+    }
 
     .card-grid {
         margin: auto;
